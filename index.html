@@ -1,1 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For You 💛</title>
+  <style>
+    :root{
+      --bg:#fff7fb; --card:#ffffff; --text:#1f1f1f; --muted:#6b7280;
+      --accent:#ff4d8d; --accent2:#7c3aed;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 20% 10%, #ffe0ef 0%, transparent 60%),
+                  radial-gradient(1000px 700px at 80% 20%, #e9ddff 0%, transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:24px;
+    }
+    .card{
+      width:min(860px, 100%);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,0.65);
+      border-radius:24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      overflow:hidden;
+    }
+    header{
+      padding:34px 28px 18px;
+      text-align:center;
+      position:relative;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(28px, 4vw, 44px);
+      letter-spacing:-0.02em;
+    }
+    p.sub{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(14px, 2vw, 18px);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap:18px;
+      padding: 18px 22px 26px;
+    }
+    @media (max-width: 760px){ .grid{grid-template-columns:1fr;} }
+    .panel{
+      background:var(--card);
+      border-radius:18px;
+      padding:18px;
+      border:1px solid rgba(0,0,0,0.06);
+    }
+    .letter{
+      font-size:16px; line-height:1.65;
+    }
+    .letter strong{color:var(--accent2)}
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .chip{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px dashed rgba(255,77,141,0.45);
+      background: rgba(255,77,141,0.08);
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .photo{
+      width:100%;
+      aspect-ratio: 4/5;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:
+        linear-gradient(135deg, rgba(255,77,141,0.25), rgba(124,58,237,0.18)),
+        radial-gradient(600px 300px at 20% 20%, rgba(255,255,255,0.9), transparent 55%);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(31,31,31,0.65);
+      font-weight:600;
+      text-align:center;
+      padding:14px;
+    }
+    .btns{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+    button, a.btn{
+      appearance:none; border:0;
+      padding:12px 14px; border-radius:14px;
+      font-weight:700; cursor:pointer; text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    .primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:white;
+      box-shadow: 0 10px 20px rgba(255,77,141,0.25);
+    }
+    .ghost{
+      background: rgba(31,31,31,0.04);
+      color: var(--text);
+      border:1px solid rgba(31,31,31,0.08);
+    }
+    footer{
+      padding:0 22px 22px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+    .hearts{
+      position:absolute; inset:0; pointer-events:none;
+      background-image:
+        radial-gradient(circle at 18% 55%, rgba(255,77,141,0.22) 0 10px, transparent 11px),
+        radial-gradient(circle at 78% 35%, rgba(124,58,237,0.18) 0 12px, transparent 13px),
+        radial-gradient(circle at 50% 20%, rgba(255,77,141,0.12) 0 16px, transparent 17px);
+      opacity:0.7;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header>
+      <div class="hearts"></div>
+      <h1>Hey <span id="name">Love</span> 💛</h1>
+      <p class="sub">A tiny website, just for you.</p>
+    </header>
+
+    <section class="grid">
+      <div class="panel">
+        <h2 style="margin:0 0 10px;">A little note</h2>
+        <div class="letter" id="letter">
+          I just wanted to say that I’m really grateful for you.
+          You make my days brighter, my laughs louder, and everything feel a little easier.
+          <br><br>
+          If you ever forget, remember this: <strong>I’m always on your team.</strong>
+        </div>
+
+        <div class="chips" id="chips">
+          <div class="chip">✨ Your smile</div>
+          <div class="chip">☕ Our talks</div>
+          <div class="chip">🌙 Late-night vibes</div>
+          <div class="chip">💐 You being you</div>
+        </div>
+
+        <div class="btns">
+          <button class="primary" id="surpriseBtn">Tap for a surprise</button>
+          <a class="btn ghost" href="#" id="musicBtn">Add a song link</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 style="margin:0 0 10px;">Photo spot</h2>
+        <div class="photo" id="photoBox">
+          Put a favorite photo here later 🖼️<br/>
+          (I’ll show you how)
+        </div>
+
+        <div style="margin-top:12px; color:#6b7280; font-size:14px; line-height:1.5;">
+          <strong>Idea:</strong> replace this box with your cutest picture together,
+          and add your anniversary date.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Made with love • <span id="date"></span>
+    </footer>
+  </main>
+
+  <script>
+    // Customize these:
+    const gfName = "Baby";              // <-- change to her name/nickname
+    const songUrl = "https://";         // <-- paste a Spotify/YouTube link
+    const surpriseMessages = [
+      "You’re my favorite person. Always. 💛",
+      "If I had 100 lifetimes, I’d choose you in all of them.",
+      "Reminder: you’re loved more than you know 🌙",
+      "I’m proud of you. Like… really proud."
+    ];
+
+    // Apply
+    document.getElementById("name").textContent = gfName;
+    document.getElementById("date").textContent = new Date().toLocaleDateString(undefined, {
+      year:"numeric", month:"long", day:"numeric"
+    });
+
+    // Surprise button
+    document.getElementById("surpriseBtn").addEventListener("click", () => {
+      const pick = surpriseMessages[Math.floor(Math.random() * surpriseMessages.length)];
+      alert(pick);
+    });
+
+    // Music link
+    const musicBtn = document.getElementById("musicBtn");
+    musicBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (songUrl && songUrl !== "https://") window.open(songUrl, "_blank");
+      else alert("Paste your song link into the code first 🙂");
+    });
+  </script>
+</body>
+</html>
 
